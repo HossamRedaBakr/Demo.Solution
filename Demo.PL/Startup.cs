@@ -32,8 +32,8 @@ namespace Demo.PL
             //services.AddScoped<DbContextOptions<MVCAppDbContext>>();
 
             services.AddDbContext<MVCAppDbContext>(options=>
-           { 
-               options.UseSqlServer("Server=.; Database=MVCAppDb; Trusted_Connection = True;");
+           {
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")) ;
            });
         }
 

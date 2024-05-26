@@ -13,8 +13,13 @@ namespace Demo.DAL.Contexts
     public class MVCAppDbContext : DbContext
     {
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=.; Database=MVCAppDb; Trusted_Connection = True;");
+        public MVCAppDbContext(DbContextOptions<MVCAppDbContext> options):base(options)
+        {
+            
+        }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)                 //old Way With no depe ndensy injection
+        //=> optionsBuilder.UseSqlServer("Server=.; Database=MVCAppDb; Trusted_Connection = True;");
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

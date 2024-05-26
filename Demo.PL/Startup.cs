@@ -1,9 +1,12 @@
+using Demo.DAL.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +27,14 @@ namespace Demo.PL
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //services.AddScoped<MVCAppDbContext>();                       //old Way
+            //services.AddScoped<DbContextOptions<MVCAppDbContext>>();
+
+            services.AddDbContext<MVCAppDbContext>(options=>
+           { 
+               options.UseSqlServer("Server=.; Database=MVCAppDb; Trusted_Connection = True;");
+           });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

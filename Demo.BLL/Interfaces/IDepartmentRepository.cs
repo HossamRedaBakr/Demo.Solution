@@ -9,7 +9,7 @@ namespace Demo.BLL.Interfaces
 {
     public interface IDepartmentRepository
     {
-        Department GetById(int id);
+        Department GetById(int? id);
         int Add(Department department);
         int Update(Department department);
 

@@ -34,7 +34,7 @@ namespace Demo.BLL.Repositories
         => _dbContext.Departments.ToList();
           
 
-        public Department GetById(int id)
+        public Department GetById(int? id)
         {
 
             return _dbContext.Departments.Find(id); //Search local if not ecxisted search in database

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Demo.BLL.Repositories
 {
-    internal class EmployeeRepository :GenericRepository<Employee>, IEmployeeRepository
+    public class EmployeeRepository :GenericRepository<Employee>, IEmployeeRepository
     {
         private readonly MVCAppDbContext _dbContext;
 

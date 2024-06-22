@@ -8,10 +8,12 @@ namespace Demo.PL.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IDepartmentRepository _departmentRepository;
 
-        public EmployeeController(IEmployeeRepository employeeRepository )
+        public EmployeeController(IEmployeeRepository employeeRepository  , IDepartmentRepository departmentRepository)
         {
             _employeeRepository = employeeRepository;
+            _departmentRepository = departmentRepository;
         }
 
         public IActionResult Index()
@@ -23,15 +25,21 @@ namespace Demo.PL.Controllers
         public IActionResult Create()
         {
 
+            ViewBag.Departments = _departmentRepository.GetAll();
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(Employee employee)
         {
+            
             if (ModelState.IsValid)
             {
-                _employeeRepository.Add(employee);
+                int result = _employeeRepository.Add(employee);
+                if (result > 0)
+                {
+                    TempData["Message"] = "Employee Is Added";
+                }
                 return RedirectToAction(nameof(Index));
             }
             else

@@ -1,6 +1,7 @@
 using Demo.BLL.Interfaces;
 using Demo.BLL.Repositories;
 using Demo.DAL.Contexts;
+using Demo.PL.MappingProfile;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +41,7 @@ namespace Demo.PL
 
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped< IEmployeeRepository, EmployeeRepository>();
+            services.AddAutoMapper(M => M.AddProfile(new EmployeeProfile()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

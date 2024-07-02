@@ -10,12 +10,13 @@ namespace Demo.BLL.Interfaces
     public interface IGenericRepository<T> 
     {
         T GetById(int? id);
-        int Add(T item);
-        int Update(T item);
+        void Add(T item);
+        void Update(T item);
 
-        int Delete(T item);
+        void Delete(T item);
 
         IEnumerable<T> GetAll();
+
 
     }
 }

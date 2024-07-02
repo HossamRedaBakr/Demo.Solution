@@ -1,6 +1,7 @@
 ﻿using Demo.BLL.Interfaces;
 using Demo.DAL.Contexts;
 using Demo.DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace Demo.BLL.Repositories
 
         public IQueryable<Employee> GetEmplyeesByAdress(string adress)
             =>  _dbContext.Employees.Where(E => E.Address.ToLower() == adress.ToLower());
-       
+
+        public IQueryable<Employee> GetEmplyeesByEmployeeName(string SearchName)
+        => _dbContext.Employees.Where(e=>e.Name.ToLower().Contains(SearchName.ToLower())).Include(e=>e.Department);
     }
 }

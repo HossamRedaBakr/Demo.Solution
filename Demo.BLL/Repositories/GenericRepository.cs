@@ -20,17 +20,15 @@ namespace Demo.BLL.Repositories
             _dbContext = dbContext;
         }
 
-        public int Add(T item)
+        public void Add(T item)
         {
             _dbContext.Add(item);
-            return _dbContext.SaveChanges();
 
         }
 
-        public int Delete(T item)
+        public void Delete(T item)
         {
             _dbContext.Remove(item);
-            return _dbContext.SaveChanges();
         }
 
         public IEnumerable<T> GetAll()
@@ -46,10 +44,9 @@ namespace Demo.BLL.Repositories
             => _dbContext.Set<T>().Find(id);
         
 
-        public int Update(T item)
+        public void Update(T item)
         {
             _dbContext.Update(item);
-            return _dbContext.SaveChanges();
         }
     }
 }

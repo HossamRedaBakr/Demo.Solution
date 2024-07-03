@@ -25,6 +25,7 @@ namespace Demo.DAL.Models
 
         public DateTime CreationDate { get; set;} =DateTime.Now;
 
+        public string ImageName { get; set; }
         public Department Department { get; set; }
         
         [ForeignKey(nameof(Department))]

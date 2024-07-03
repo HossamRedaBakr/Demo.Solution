@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Demo.BLL.Interfaces;
 using Demo.DAL.Models;
+using Demo.PL.Helpers;
 using Demo.PL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
@@ -48,6 +49,9 @@ namespace Demo.PL.Controllers
 
             if (ModelState.IsValid)
             {
+
+                employeeVM.ImageName = DocumentSettings.UpLoadFile(employeeVM.Image, "Images");
+
                 var MappedEmployee =_mapper.Map<EmployeeViewModel,Employee>(employeeVM);
                     _unitOfWork.EmployeeRepository.Add(MappedEmployee);
                 int result = _unitOfWork.Complete();
@@ -115,7 +119,13 @@ namespace Demo.PL.Controllers
             {
                 var MappedEmployee = _mapper.Map<EmployeeViewModel,Employee> (employeeVm);
                 _unitOfWork.EmployeeRepository.Delete(MappedEmployee);
-                _unitOfWork.Complete();
+                int result =_unitOfWork.Complete();
+
+                if(result > 0 && employeeVm.ImageName is not null)
+                {
+                    DocumentSettings.DeleteFile(employeeVm.ImageName, "Images");
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             catch (System.Exception ex)

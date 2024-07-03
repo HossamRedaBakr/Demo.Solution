@@ -38,10 +38,11 @@
 @if (Model.Count() > 0)
 {
 
-    <table class="table tabble-striped table-hover text-lg-center  ">
+    <table class="table tabble-striped table-hover text-lg-center   ">
 
         <thead>
             <tr>
+                 <th>@Html.DisplayNameFor(E => E.Image)</th>
                  <th>@Html.DisplayNameFor(E => E.Name)</th>
                  <th>@Html.DisplayNameFor(E => E.Age)</th>
                  <th>@Html.DisplayNameFor(E => E.Salary)</th>
@@ -51,7 +52,7 @@
                  <th>@Html.DisplayNameFor(E => E.PhoneNumber)</th>
                  <th>@Html.DisplayNameFor(E => E.HireDate)</th>
                  <th>@Html.DisplayNameFor(E => E.IsActve)</th>
-                <th>Details</th>
+                    <th>Details</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
@@ -61,6 +62,7 @@
             {
 
                 <tr>
+                    <td><img src="~/Files/Images/@employee.ImageName" class="rounded" height="80" width="80" alt="Employee Image" /></td>
                     <td>@employee.Name</td>
                     <td>@employee.Age</td>
                         <td>@Html.DisplayFor(E => employee.Salary)</td>

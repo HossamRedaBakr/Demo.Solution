@@ -9,13 +9,13 @@ namespace Demo.BLL.Interfaces
 {
     public interface IGenericRepository<T> 
     {
-        T GetById(int? id);
-        void Add(T item);
+        Task<T> GetByIdAsync(int? id);
+        Task AddAsync(T item);
         void Update(T item);
 
         void Delete(T item);
 
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAllAsync();
 
 
     }

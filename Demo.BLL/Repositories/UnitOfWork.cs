@@ -24,9 +24,9 @@ namespace Demo.BLL.Repositories
              DepartmentRepository = new DepartmentRepository(dbContext);
         }
 
-        public int Complete()
+        public async Task<int> CompleteAsync()
         {
-            return _dbContext.SaveChanges();
+            return await _dbContext.SaveChangesAsync();
         }
 
         public void Dispose()
